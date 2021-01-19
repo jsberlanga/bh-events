@@ -4,10 +4,10 @@ import { Event } from '../db/models';
 import { mockEvent } from './__mocks__';
 
 describe('GET /api', () => {
-  it('brainhub api request', async () => {
+  it('bh api request', async () => {
     const result = await request(app).get('/api');
 
-    expect(result.text).toEqual('<h1>welcome to brainhub api</h1>');
+    expect(result.text).toEqual('<h1>welcome to bh api</h1>');
     expect(result.status).toEqual(200);
   });
 });
@@ -32,7 +32,7 @@ describe('POST /api/events', () => {
 
 // QUERIES EVENT
 describe('GET /api/events', () => {
-  it('brainhub api request', async () => {
+  it('bh api request', async () => {
     const result = await request(app).get('/api/events');
 
     expect(result.body).toEqual(
