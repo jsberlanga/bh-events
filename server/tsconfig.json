@@ -1,11 +1,4 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  },
+  "extends": "./tsconfig.base.json",
+  "exclude": ["node_modules", "src/tests"]
 }
