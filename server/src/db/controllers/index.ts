@@ -29,6 +29,7 @@ export const getEvent = async (req: RequestWithBody, res: Response) => {
 };
 
 export const createEvent = async (req: RequestWithBody, res: Response) => {
+  console.log(req.body);
   const { name, lastname, email, date } = req.body;
 
   const newEvent = new Event({
@@ -63,12 +64,9 @@ export const updateEvent = async (req: RequestWithBody, res: Response) => {
 };
 
 export const deleteEvent = async (req: RequestWithBody, res: Response) => {
-  const { id } = req.params;
+  const { email } = req.params;
 
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send(`No Event with id: ${id}`);
-
-  await Event.findByIdAndRemove(id);
+  await Event.findOneAndRemove({ email });
 
   res.json({ message: 'Event deleted successfully.' });
 };

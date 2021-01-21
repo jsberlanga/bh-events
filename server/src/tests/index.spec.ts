@@ -1,7 +1,8 @@
 import app from '../app';
-import request from 'supertest';
 import { Event } from '../db/models';
 import { mockEvent } from './__mocks__';
+
+const request = require('supertest');
 
 describe('GET /api', () => {
   it('bh api request', async () => {
@@ -65,21 +66,13 @@ describe('PUT /api/events/:id', () => {
 });
 
 // DELETES EVENT
-describe('DELETE /api/events/:id', () => {
+describe('DELETE /api/events/:email', () => {
   it('deletes the mock event', async () => {
-    const { _id } = await Event.findOne({ email: mockEvent.email });
+    const { email } = await Event.findOne({ email: mockEvent.email });
 
-    const result = await request(app).delete(`/api/events/${_id}`);
+    const result = await request(app).delete(`/api/events/${email}`);
 
     expect(result.body).toEqual({ message: 'Event deleted successfully.' });
     expect(result.status).toEqual(200);
-  });
-
-  it('returns 404 if no event found', async () => {
-    const _id = 'invalid_id';
-
-    const result = await request(app).delete(`/api/events/${_id}`);
-
-    expect(result.status).toEqual(404);
   });
 });
