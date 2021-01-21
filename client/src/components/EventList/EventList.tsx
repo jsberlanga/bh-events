@@ -1,19 +1,31 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { useEvents } from 'hooks';
 import { formatDate } from 'helpers';
+import { handleDelete } from 'helpers/actions';
+import { useEvents } from 'hooks';
+import { ErrorMessage } from 'components/ErrorMessage';
+import { Loading } from 'components/Loading';
 
 const List = styled.ul`
   list-style: none;
   padding: 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(3, 33%);
+  }
 `;
 
 const ListItem = styled.li`
   margin-right: 1rem;
+  margin-bottom: 1rem;
   padding: 1rem;
-  border-radius: 4px;
-  border: 1px solid;
+  height: 14rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   div:last-of-type {
     margin-bottom: 1rem;
@@ -25,36 +37,53 @@ const ListItem = styled.li`
 `;
 
 const EventList = () => {
-  const { events, isLoading, error } = useEvents();
+  const { events, loading, error } = useEvents();
 
-  if (isLoading) return <div>loading...</div>;
-  if (error || !events) return <div>An error ocurred</div>;
+  if (error) {
+    return (
+      <ErrorMessage>An error ocurred. Please reload the page.</ErrorMessage>
+    );
+  }
 
   return (
     <React.Fragment>
-      <h2>List of all the events</h2>
-      <List>
-        {events.map((event) => {
-          return (
-            <ListItem key={event._id}>
-              <div>
-                <strong>Name:</strong> {event.name}
-              </div>
-              <div>
-                <strong>Lastname:</strong> {event.lastname}
-              </div>
-              <div>
-                <strong>Email:</strong> {event.email}
-              </div>
-              <div>
-                <strong>Date:</strong> {formatDate(event.date)}
-              </div>
-              <button>edit</button>
-              <button>delete</button>
-            </ListItem>
-          );
-        })}
-      </List>
+      <h2>List with all recorded events</h2>
+      {loading ? (
+        <Loading />
+      ) : (
+        <List>
+          {events.length === 0
+            ? 'There are no events yet.'
+            : events.map(({ email, name, lastname, date }) => {
+                return (
+                  <ListItem key={email} className="withBorder">
+                    <div>
+                      <div>
+                        <strong>Name:</strong> {name}
+                      </div>
+                      <div>
+                        <strong>Lastname:</strong> {lastname}
+                      </div>
+                      <div>
+                        <strong>Email:</strong> {email}
+                      </div>
+                      <div>
+                        <strong>Date:</strong> {formatDate(date)}
+                      </div>
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => handleDelete(events, email)}
+                        className="btn btn--delete"
+                      >
+                        delete event
+                      </button>
+                    </div>
+                  </ListItem>
+                );
+              })}
+        </List>
+      )}
     </React.Fragment>
   );
 };
