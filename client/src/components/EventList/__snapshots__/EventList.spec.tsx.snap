@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventList should render with styles 1`] = `
+.c0 {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+}
+
+.c1 {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  height: 14rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c1 div:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.c1 button {
+  margin-right: 1rem;
+}
+
+@media screen and (min-width:768px) {
+  .c0 {
+    grid-template-columns: repeat(3,33%);
+  }
+}
+
+<div>
+  <h2>
+    List with all recorded events
+  </h2>
+  <ul
+    class="c0"
+  >
+    <li
+      class="c1 withBorder"
+    >
+      <div>
+        <div>
+          <strong>
+            Name:
+          </strong>
+           
+          test_name
+        </div>
+        <div>
+          <strong>
+            Lastname:
+          </strong>
+           
+          test_lastname
+        </div>
+        <div>
+          <strong>
+            Email:
+          </strong>
+           
+          test@example.com
+        </div>
+        <div>
+          <strong>
+            Date:
+          </strong>
+           
+          01/01/2020
+        </div>
+      </div>
+      <div>
+        <button
+          class="btn btn--delete"
+        >
+          delete event
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
+`;

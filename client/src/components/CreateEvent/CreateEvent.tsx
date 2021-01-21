@@ -1,5 +1,5 @@
 import { ErrorMessage } from 'components/ErrorMessage';
-import { useEvents, useForm } from 'hooks';
+import { useCreateForm, useEvents } from 'hooks';
 import * as React from 'react';
 import styled from 'styled-components';
 
@@ -25,8 +25,9 @@ const InputField = styled.input`
 
 const CreateEvent = () => {
   const { events } = useEvents();
-
-  const { event, action, handleChange, handleSubmit } = useForm(events);
+  const { event, actionState, handleChange, handleSubmit } = useCreateForm(
+    events,
+  );
 
   return (
     <React.Fragment>
@@ -76,9 +77,15 @@ const CreateEvent = () => {
             onChange={(e) => handleChange(e, 'date')}
           />
         </Label>
-        <InputField type="submit" value="create" className="btn btn--submit" />
+        <InputField
+          type="submit"
+          value={`creat${actionState.loading ? 'ing' : 'e'}`}
+          className="btn btn--submit"
+        />
       </Form>
-      {action.error ? <ErrorMessage>Error: {action.error}</ErrorMessage> : null}
+      {actionState.error ? (
+        <ErrorMessage>{actionState.error}</ErrorMessage>
+      ) : null}
     </React.Fragment>
   );
 };

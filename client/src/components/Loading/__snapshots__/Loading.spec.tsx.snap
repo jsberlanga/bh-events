@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateEvent should render with styles correctly 1`] = `
+.c0 {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.c0 div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px solid#222831;
+  border-radius: 50%;
+  -webkit-animation: lds-ring 1.2s cubic-bezier(0.5,0,0.5,1) infinite;
+  animation: lds-ring 1.2s cubic-bezier(0.5,0,0.5,1) infinite;
+  border-color: #222831 transparent transparent transparent;
+}
+
+.c0 div::nth-of-type(1) {
+  -webkit-animation-delay: -0.45s;
+  animation-delay: -0.45s;
+}
+
+.c0 div::nth-of-type(2) {
+  -webkit-animation-delay: -0.3s;
+  animation-delay: -0.3s;
+}
+
+.c0 div::nth-of-type(3) {
+  -webkit-animation-delay: -0.15s;
+  animation-delay: -0.15s;
+}
+
+<div>
+  <div
+    class="c0 lds-ring"
+  >
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;

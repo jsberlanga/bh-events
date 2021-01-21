@@ -1,12 +1,21 @@
 import { BASE_API_URL } from '../constants';
 import { mutate } from 'swr';
-import { Event } from 'types';
+import { TEvent } from 'types';
 
-export const handleDelete = async (
-  events: Event[],
-  id: string,
-): Promise<{ status?: { message: string } }> => {
-  let status;
+type Status = { message: string };
+
+type TActionResponse = Promise<{ status?: Status }>;
+
+interface TDeleteAction<Response = TActionResponse> {
+  (events: TEvent[], id: string): Response;
+}
+
+interface TCreateAction<Response = TActionResponse> {
+  (events: TEvent[], event: TEvent): Response;
+}
+
+export const handleDelete: TDeleteAction = async (events, id) => {
+  let status: Status | undefined;
 
   const filteredEvents = events?.filter(({ email }) => email !== id);
 
@@ -30,11 +39,14 @@ export const handleDelete = async (
   return { status };
 };
 
-export const handleCreate = async (
-  events: Event[],
-  event: Event,
-): Promise<{ status?: { message: string } }> => {
-  let status;
+export const handleCreate: TCreateAction = async (events, event) => {
+  let status: Status | undefined;
+
+  if (!events) {
+    status = { message: 'An error ocurred' };
+
+    return { status };
+  }
 
   const newEvents = [...events, event];
 

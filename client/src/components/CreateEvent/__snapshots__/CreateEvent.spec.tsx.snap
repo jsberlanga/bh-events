@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateEvent should render with styles 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 15rem;
+  margin-bottom: 1rem;
+  padding: 14px;
+}
+
+.c1 {
+  font-size: 0.8rem;
+  margin-bottom: 0.7rem;
+}
+
+.c2 {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6px;
+  font-size: 1rem;
+}
+
+<div>
+  <h2>
+    Create a new event
+  </h2>
+  <form
+    class="c0 withBorder"
+  >
+    <label
+      class="c1"
+      for="name"
+    >
+      Name
+      <input
+        class="c2 withBorder"
+        id="name"
+        required=""
+        type="text"
+        value=""
+      />
+    </label>
+    <label
+      class="c1"
+      for="lastname"
+    >
+      Lastname
+      <input
+        class="c2 withBorder"
+        id="lastname"
+        required=""
+        type="text"
+        value=""
+      />
+    </label>
+    <label
+      class="c1"
+      for="email"
+    >
+      Email
+      <input
+        class="c2 withBorder"
+        id="email"
+        required=""
+        type="email"
+        value=""
+      />
+    </label>
+    <label
+      class="c1"
+      for="date"
+    >
+      Date
+      <input
+        class="c2 withBorder"
+        id="date"
+        required=""
+        type="date"
+        value="2021-01-22"
+      />
+    </label>
+    <input
+      class="c2 btn btn--submit"
+      type="submit"
+      value="create"
+    />
+  </form>
+</div>
+`;

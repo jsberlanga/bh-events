@@ -1,4 +1,4 @@
-export interface Event {
+export interface TEvent {
   _id?: string;
   email: string;
   name: string;
